@@ -23,6 +23,16 @@
     border-style: hidden ;
     
 }
+#cron{
+    width: 100%;
+    
+}
+#cron_pago{
+    
+    overflow: auto;
+}
+
+
 
 
 
