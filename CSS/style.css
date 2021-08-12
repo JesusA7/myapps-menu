@@ -1,20 +1,28 @@
 #outputs .card{
     align-items: center;
     margin-top: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
-.txt-center{
-    text-align: center;
+
+#inputs .collapse{
+    margin-top: 10px;
 }
+
+
 .help-btn{
     border-radius: 45%;
     font-size: x-small;
 }
 
 .container{
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .without-border{
     border-style: hidden ;
     
 }
+
+
+

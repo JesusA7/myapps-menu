@@ -16,7 +16,8 @@ $(document).ready(function(){
             var principal = 0
             var KacumI = K
             var Kacum = K
-
+            var Ia = 0
+            var Pa = 0
             var allInteres = 0
             var allPrestamo = cuota * n
 
@@ -28,7 +29,8 @@ $(document).ready(function(){
                 interes = Kacum * TEM
                 principal = cuota-interes
                 Kacum = Kacum - principal
-
+                Ia = Ia + interes
+                Pa = Pa + principal
                 $('tbody').append("<tr>"+
                 "<th scope='row'>" +(i+1)+ "</th>"+
                 "<td>"+KacumI.toFixed(2)+"</td>"+
@@ -36,6 +38,8 @@ $(document).ready(function(){
                 "<td>"+principal.toFixed(2)+"</td>"+
                 "<td>"+interes.toFixed(2)+"</td>"+
                 "<td>"+Kacum.toFixed(2)+"</td>"+
+                "<td>"+Pa.toFixed(2)+"</td>"+
+                "<td>"+Ia.toFixed(2)+"</td>"+
                 +"</tr>")
                 
                 allInteres = allInteres+interes
@@ -46,6 +50,9 @@ $(document).ready(function(){
         }
     })
 
+    $('#capital').blur(function(){
+        $('#tea').focus();
+    })
     $('#tea').blur(function(){
         let tea = parseFloat($('#tea').val()/100) //en jquery para obtener el valor de un input se usa val()
         let tem = valTEM(tea)
@@ -108,13 +115,10 @@ function validation(){
     var TEA = parseFloat(document.getElementById("tea").value)/100
     var n = parseFloat(document.getElementById("periodo").value)
     if(isNaN(K)){ //si K es diferente de un numero mandara un alerta
-        $("#msgValidarK").modal('show')
         return false
     }else if(isNaN(TEA)){//si TEA es diferente de un número
-        $("#msgValidarTEA").modal('show')
         return false
     }else if(isNaN(n)){
-        $("#msgValidarN").modal('show')
         return false
     }else {
         return true
