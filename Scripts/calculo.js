@@ -22,24 +22,9 @@ $(document).ready(function(){
             var allPrestamo = cuota * n
 
             var card = document.getElementById("card")
-            // $('#card').fadeIn(1000)
-            // card.style.display = 'block'
-            // card.style.overflow = 'hidden'
-            card.style.maxHeight = card.scrollHeight + "px"
-            // var coll = document.getElementsByClassName("collapsible");
-            // var i;
 
-            // for (i = 0; i < coll.length; i++) {
-            // coll[i].addEventListener("click", function() {
-            //     this.classList.toggle("active");
-            //     var content = this.nextElementSibling;
-            //     if (content.style.maxHeight){
-            //     content.style.maxHeight = null;
-            //     } else {
-            //     content.style.maxHeight = content.scrollHeight + "px";
-            //     }
-            // });
-            // }
+            card.style.maxHeight = card.scrollHeight + "px"
+
 
             $('tbody th').remove();
             $('tbody td').remove();
