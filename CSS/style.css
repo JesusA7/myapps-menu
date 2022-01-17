@@ -4,7 +4,9 @@
     margin-left: 0px;
     margin-right: 0px;
 }
-
+body{
+    background-color: #f9fbff;
+}
 #inputs .collapse{
     margin-top: 10px;
 }
@@ -16,9 +18,15 @@
 }
 
 .container{
-    margin-bottom: 25px;
+    margin-top: 25px;
+    justify-content: center;
+    align-items: center;
+    /* margin-bottom: 25px; */
 }
-
+.scroll{
+    overflow-y: hidden; 
+    overflow-x: auto;
+}
 .without-border{
     border-style: hidden ;
     

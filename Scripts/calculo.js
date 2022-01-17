@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-
+    
     $('#simular').click(function(){
 
         if(validation()==true){
@@ -21,6 +21,25 @@ $(document).ready(function(){
             var allInteres = 0
             var allPrestamo = cuota * n
 
+            var card = document.getElementById("card")
+            // $('#card').fadeIn(1000)
+            // card.style.display = 'block'
+            // card.style.overflow = 'hidden'
+            card.style.maxHeight = card.scrollHeight + "px"
+            // var coll = document.getElementsByClassName("collapsible");
+            // var i;
+
+            // for (i = 0; i < coll.length; i++) {
+            // coll[i].addEventListener("click", function() {
+            //     this.classList.toggle("active");
+            //     var content = this.nextElementSibling;
+            //     if (content.style.maxHeight){
+            //     content.style.maxHeight = null;
+            //     } else {
+            //     content.style.maxHeight = content.scrollHeight + "px";
+            //     }
+            // });
+            // }
 
             $('tbody th').remove();
             $('tbody td').remove();
@@ -33,13 +52,13 @@ $(document).ready(function(){
                 Pa = Pa + principal
                 $('tbody').append("<tr>"+
                 "<th scope='row'>" +(i+1)+ "</th>"+
-                "<td>"+KacumI.toFixed(2)+"</td>"+
-                "<td>"+cuota.toFixed(2)+"</td>"+
-                "<td>"+principal.toFixed(2)+"</td>"+
-                "<td>"+interes.toFixed(2)+"</td>"+
-                "<td>"+Kacum.toFixed(2)+"</td>"+
-                "<td>"+Pa.toFixed(2)+"</td>"+
-                "<td>"+Ia.toFixed(2)+"</td>"+
+                "<td class='amount'>"+KacumI.toFixed(2)+"</td>"+
+                "<td class='amount'>"+cuota.toFixed(2)+"</td>"+
+                "<td class='amount'>"+principal.toFixed(2)+"</td>"+
+                "<td class='amount'>"+interes.toFixed(2)+"</td>"+
+                "<td class='amount'>"+Kacum.toFixed(2)+"</td>"+
+                "<td class='amount'>"+Pa.toFixed(2)+"</td>"+
+                "<td class='amount'>"+Ia.toFixed(2)+"</td>"+
                 +"</tr>")
                 
                 allInteres = allInteres+interes
@@ -50,9 +69,9 @@ $(document).ready(function(){
         }
     })
 
-    $('#capital').blur(function(){
-        $('#tea').focus();
-    })
+    // $('#capital').blur(function(){
+    //     $('#tea').focus();
+    // })
     $('#tea').blur(function(){
         let tea = parseFloat($('#tea').val()/100) //en jquery para obtener el valor de un input se usa val()
         let tem = valTEM(tea)
@@ -63,7 +82,7 @@ $(document).ready(function(){
 
         $('#tna').val(tna.toFixed(2));
         $('#tem').val(tem.toFixed(2));
-        $('#periodo').focus();
+        
     })
 
     $('#tna').blur(()=>{
@@ -76,7 +95,7 @@ $(document).ready(function(){
 
         $('#tem').val(tem.toFixed(2));
         $('#tea').val(tea.toFixed(2));
-        $('#periodo').focus();
+        // $('#periodo').focus();
     })
 
     $('#tem').blur(()=>{
@@ -89,15 +108,15 @@ $(document).ready(function(){
 
         $('#tna').val(tna.toFixed(2));
         $('#tea').val(tea.toFixed(2));
-        $('#periodo').focus();
+        // $('#periodo').focus();
     })
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-      return new bootstrap.Popover(popoverTriggerEl)
-    })
-    var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
-        trigger: 'focus'
-      })
+    // var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    // var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    //   return new bootstrap.Popover(popoverTriggerEl)
+    // })
+    // var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
+    //     trigger: 'focus'
+    //   })
 })
 
 function valCuota(){
@@ -115,10 +134,13 @@ function validation(){
     var TEA = parseFloat(document.getElementById("tea").value)/100
     var n = parseFloat(document.getElementById("periodo").value)
     if(isNaN(K)){ //si K es diferente de un numero mandara un alerta
+        document.getElementById("capital").focus()
         return false
     }else if(isNaN(TEA)){//si TEA es diferente de un número
+        document.getElementById("tea").focus()
         return false
     }else if(isNaN(n)){
+        document.getElementById("periodo").focus()
         return false
     }else {
         return true
