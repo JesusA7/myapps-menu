@@ -6,7 +6,10 @@
   margin: 0;
   padding: 0;
 }
-
+.scroll{
+  overflow-x: auto;
+  /* overflow-y: auto; */
+}
 .container-table {
     --clr-primary: #81d4fa;
     --clr-primary-light: #e1f5fe;
@@ -40,7 +43,7 @@
   margin-right: 15px;
 }
 
-table{
+.container-table table{
   border-collapse: collapse;
   box-shadow: 0 5px 10px var(--clr-gray300);
   background-color: var(--clr-gray200);
@@ -49,11 +52,11 @@ table{
 
 
 }
-thead {
+.container-table thead {
     box-shadow: 0 5px 10px var(--clr-gray300);
 }
 
-th {
+.container-table th {
     padding: 1rem 2rem;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
@@ -61,11 +64,11 @@ th {
     font-weight: 900;
 }
 
-td {
+.container-table td {
     padding: 1rem 2rem;
   }
 
-a {
+  a {
     text-decoration: none;
     color: var(--clr-link);
   }

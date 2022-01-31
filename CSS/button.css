@@ -3,6 +3,7 @@
 .container-button{
     --ancho:200px;
     --alto:70px;
+    --colorbg:#0099E9;
     margin-top: 25px;
     font-family: 'Source Sans Pro', sans-serif;
     letter-spacing: 4px;
@@ -14,20 +15,25 @@
     /* min-height: 100vh; */
 }
 
-.btn-1{
+.container-button .btn-1{
     width: var(--ancho);
     height: var(--alto);
     border: none;
     color: white;
-    background-color: rgb(255, 0, 68);
+    background-color: var(--colorbg);
     border-radius: 4px;
     box-shadow: inset 0 0 0 0 #f9e506;
     transition: ease-out 0.3s;
     font-size: 1.2rem;   
     outline: none;
+    text-transform: uppercase;
 }
 
-.btn-1:hover{
+.container-button a{
+    padding: 20px 40px;
+}
+
+.container-button .btn-1:hover{
     box-shadow: inset var(--ancho) 0 0 0 #f9e506;
     cursor: pointer;
     color: #000;

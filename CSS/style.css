@@ -23,10 +23,7 @@ body{
     align-items: center;
     /* margin-bottom: 25px; */
 }
-.scroll{
-    overflow-y: hidden; 
-    overflow-x: auto;
-}
+
 .without-border{
     border-style: hidden ;
     

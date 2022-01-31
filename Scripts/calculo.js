@@ -1,4 +1,5 @@
 
+
 $(document).ready(function(){
     
     $('#simular').click(function(){
@@ -26,8 +27,13 @@ $(document).ready(function(){
             card.style.maxHeight = card.scrollHeight + "px"
 
 
-            $('tbody th').remove();
-            $('tbody td').remove();
+            // $('tbody th').remove();
+            var cuerpoDato=document.getElementById('cuerpoDato');
+            //elimina todo los hijos de cuerpoDato
+            while(cuerpoDato.firstChild){
+                cuerpoDato.removeChild(cuerpoDato.firstChild);
+            }
+            
             for(let i = 0; i<n;i++){
                 KacumI = Kacum
                 interes = Kacum * TEM
@@ -35,8 +41,8 @@ $(document).ready(function(){
                 Kacum = Kacum - principal
                 Ia = Ia + interes
                 Pa = Pa + principal
-                $('tbody').append("<tr>"+
-                "<th scope='row'>" +(i+1)+ "</th>"+
+                let eHtml = "<tr>"+
+                "<td scope='row'>" +(i+1)+ "</td>"+
                 "<td class='amount'>"+KacumI.toFixed(2)+"</td>"+
                 "<td class='amount'>"+cuota.toFixed(2)+"</td>"+
                 "<td class='amount'>"+principal.toFixed(2)+"</td>"+
@@ -44,15 +50,44 @@ $(document).ready(function(){
                 "<td class='amount'>"+Kacum.toFixed(2)+"</td>"+
                 "<td class='amount'>"+Pa.toFixed(2)+"</td>"+
                 "<td class='amount'>"+Ia.toFixed(2)+"</td>"+
-                +"</tr>")
+                "</tr>";
+                cuerpoDato.insertAdjacentHTML("beforeend",eHtml) ;
+                // $('tbody').append("<tr>"+
                 
-                allInteres = allInteres+interes
-        }
-        $('#cuota').text(cuota.toFixed(2));
-        $('#totalInteres').text(allInteres.toFixed(2));
-        $('#totalPrestamo').text(allPrestamo.toFixed(2));
+                allInteres = allInteres+interes;
+            }
+        let cardCuota = document.getElementById("cuota");
+        let cardInteres = document.getElementById("totalInteres");
+        let cardPrestamo = document.getElementById("totalPrestamo");
+        cardCuota.textContent=cuota.toFixed(2);
+        cardInteres.textContent = allInteres.toFixed(2);
+        cardPrestamo.textContent=allPrestamo.toFixed(2);
+        // $('#cuota').text(cuota.toFixed(2));
         }
     })
+
+    $("#descargar").click(function(){
+        $("#cron_table").tableExport({type:'excel',escape:'false'});
+    })
+    function Export() {
+        $("#cron_table").table2excel({
+          filename: "file.xls"
+        });
+      }
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight){
+        content.style.maxHeight = null;
+        } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        } 
+    });
+    }
 
     // $('#capital').blur(function(){
     //     $('#tea').focus();
@@ -103,11 +138,14 @@ $(document).ready(function(){
     //     trigger: 'focus'
     //   })
 })
+var ctlCapital= document.getElementById("capital")
+var ctlTea = document.getElementById("tea")
+var ctlPeriodo = document.getElementById("periodo")
 
 function valCuota(){
-    var K = parseFloat(document.getElementById("capital").value)
-    var TEA = parseFloat(document.getElementById("tea").value)/100
-    var n = parseFloat(document.getElementById("periodo").value)
+    var K = parseFloat(ctlCapital.value)
+    var TEA = parseFloat((ctlTea).value)/100
+    var n = parseFloat(ctlPeriodo.value)
     
     let TEM = (-1+((1+TEA)**(1/12)))
     let cuota = K * (TEM*((1+TEM)**(n)))/(-1+((1+TEM)**n))
@@ -115,17 +153,17 @@ function valCuota(){
 }
 
 function validation(){
-    var K = parseFloat(document.getElementById("capital").value)
-    var TEA = parseFloat(document.getElementById("tea").value)/100
-    var n = parseFloat(document.getElementById("periodo").value)
+    let K = parseFloat(ctlCapital.value)
+    let TEA = parseFloat(ctlTea.value)/100
+    let n = parseFloat(ctlPeriodo.value)
     if(isNaN(K)){ //si K es diferente de un numero mandara un alerta
-        document.getElementById("capital").focus()
+        ctlCapital.focus()
         return false
     }else if(isNaN(TEA)){//si TEA es diferente de un número
-        document.getElementById("tea").focus()
+        ctlTea.focus()
         return false
     }else if(isNaN(n)){
-        document.getElementById("periodo").focus()
+        ctlPeriodo.focus()
         return false
     }else {
         return true
@@ -133,17 +171,25 @@ function validation(){
 }
 
 function valTEM(TEA){
-    
-    let TEM = (-1+((1+TEA)**(1/12)))
-    return TEM
+    let TEM = (-1+((1+TEA)**(1/12)));
+    return TEM;
 }
 
 function valTNA(TEM){
-    let TNA = TEM*12
-    return TNA
+    let TNA = TEM*12;
+    return TNA;
 }
 
 function valTEA(TEM){
-    let TEA = (-1+(1+TEM)**12)
-    return TEA
+    let TEA = (-1+(1+TEM)**12);
+    return TEA;
+}
+
+function generatePDF(){
+    let element = document.getElementById("cron_table");
+
+    html2pdf(element, {
+        jsPDF:        { format: 'a4', orientation: 'landscape' }
+      });
+
 }
